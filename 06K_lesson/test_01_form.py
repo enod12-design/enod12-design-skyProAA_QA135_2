@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 @pytest.fixture
 def driver():
     driver = webdriver.Edge()
@@ -12,13 +13,15 @@ def driver():
     yield driver
     driver.quit()
 
+
 def test_fill_form(driver):
     url = "https://bonigarcia.dev/selenium-webdriver-java/data-types.html"
     driver.get(url)
 
     wait = WebDriverWait(driver, 10)
-
-    wait.until(EC.presence_of_element_located((By.NAME, "first-name"))).send_keys("Алексей")
+    wait.until(
+        EC.presence_of_element_located((By.NAME, "first-name"))
+    ).send_keys("Алексей")
     driver.find_element(By.NAME, "last-name").send_keys("Афанасьев")
     driver.find_element(By.NAME, "address").send_keys("Калатушкина, 13-5")
     driver.find_element(By.NAME, "e-mail").send_keys("test@skypro.com")
@@ -29,7 +32,8 @@ def test_fill_form(driver):
     driver.find_element(By.NAME, "job-position").send_keys("QA")
     driver.find_element(By.NAME, "company").send_keys("SkyPro")
 
-    submit_button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    submit_button = driver.find_element(
+        By.CSS_SELECTOR, "button[type='submit']")
     driver.execute_script("arguments[0].click();", submit_button)
 
     wait.until(EC.presence_of_element_located((By.ID, "zip-code")))
@@ -52,4 +56,6 @@ def test_fill_form(driver):
     for field_id in green_fields_ids:
         field_element = driver.find_element(By.ID, field_id)
         field_classes = field_element.get_attribute("class")
-        assert "alert-success" in field_classes, f"Поле {field_id} должно быть подсвечено зеленым!"
+        assert "alert-success" in field_classes, (
+            f"Поле {field_id} должно быть подсвечено зеленым!"
+        )
