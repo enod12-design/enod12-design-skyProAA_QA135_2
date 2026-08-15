@@ -19,6 +19,7 @@ def test_fill_form(driver):
     driver.get(url)
 
     wait = WebDriverWait(driver, 10)
+
     wait.until(
         EC.presence_of_element_located((By.NAME, "first-name"))
     ).send_keys("Алексей")
