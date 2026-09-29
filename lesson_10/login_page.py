@@ -9,7 +9,9 @@ class LoginPage:
     """Класс для работы со страницей авторизации."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """Инициализация элементов страницы."""
+        """Инициализация элементов страницы.
+        :param driver: экземпляр WebDriver
+        """
         self.driver = driver
         self.url: str = "https://www.saucedemo.com/"
         self._username = (By.ID, "user-name")

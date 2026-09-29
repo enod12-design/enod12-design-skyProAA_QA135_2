@@ -9,7 +9,9 @@ class CheckoutPage:
     """Класс для работы со страницей оформления заказа."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """Инициализация элементов страницы."""
+        """Инициализация элементов страницы.
+        :param driver: экземпляр WebDriver
+        """
         self.driver = driver
         self._first_name = (By.ID, "first-name")
         self._last_name = (By.ID, "last-name")
@@ -25,7 +27,11 @@ class CheckoutPage:
             self, first_name: str, last_name: str, postal_code: str
     ) -> None:
         """Заполняет форму персональными данными
-        и нажимает кнопку продолжения."""
+        и нажимает кнопку продолжения.
+        :param first_name: имя покупателя
+        :param last_name: фамилия покупателя
+        :param postal_code: почтовый индекс
+        """
         wait = WebDriverWait(self.driver, 10)
 
         # Ждем появление первoго поля
@@ -40,7 +46,10 @@ class CheckoutPage:
 
     @allure.step("Получение итоговой стоимости заказа")
     def get_total_price(self) -> str:
-        """Возвращает итоговую стоимость заказа."""
+        """Возвращает итоговую стоимость заказа.
+        :return: итоговая стоимость заказа
+        :rtype: str
+        """
         wait = WebDriverWait(self.driver, 10)
         total_element = wait.until(
             EC.visibility_of_element_located(self._total_label)

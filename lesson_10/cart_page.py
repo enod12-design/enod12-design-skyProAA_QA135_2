@@ -9,7 +9,9 @@ class CartPage:
     """Класс для работы со страницей корзины."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """Инициализация элементов страницы."""
+        """Инициализация элементов страницы.
+        :param driver: экземпляр WebDriver
+        """
         self.driver = driver
         self._checkout_btn = (By.ID, "checkout")
 

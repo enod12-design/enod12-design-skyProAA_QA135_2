@@ -9,7 +9,9 @@ class InventoryPage:
     """Класс для работы с главной страницей каталога товаров."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """Инициализация элементов страницы."""
+        """Инициализация элементов страницы.
+        :param driver: экземпляр WebDriver
+        """
         self.driver = driver
         self._cart_link = (By.CLASS_NAME, "shopping_cart_link")
 
